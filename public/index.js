@@ -12,11 +12,33 @@ async function main(){
     function increment(){
         countValue++;
         countContainer.textContent = countValue;
-    }
+
+        fetch('http://localhost:9001/counter', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify ({
+                value : countValue
+            })
+        })                                          
+}
+ 
 
     function decrement(){
         countValue--;
         countContainer.textContent = countValue;
+
+        fetch('http://localhost:9001/counter', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify ({
+                value : countValue
+            }),
+            
+        })
     }
 
     incrementButton.addEventListener('click', increment);
